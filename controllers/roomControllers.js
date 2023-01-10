@@ -38,7 +38,7 @@ const getSingleRoom = catchAsyncErrors(async (req, res, next) => {
 })
 
 // Update room => /api/room/:id
-const updateRoom = catchAsyncErrors(async (req, res) => {
+const updateRoom = catchAsyncErrors(async (req, res, next) => {
   let room = await Room.findOneAndUpdate(req.query.id, req.body, {
     new: true,
     runValidators: true,
@@ -55,10 +55,10 @@ const updateRoom = catchAsyncErrors(async (req, res) => {
 
 // Delete room => /api/room/:id
 // delete image form cloudinary after intergration with cloudinary
-const deleteRoom = catchAsyncErrors(async (req, res) => {
+const deleteRoom = catchAsyncErrors(async (req, res, next) => {
   const room = await Room.findByIdAndDelete(req.query.id);
   if (!room) {
-    return next(new ErrorHandler({message: "Room not found", statusCode: 404}));
+    return next(new ErrorHandler( "Room not found",  404));
   }
   res.status(200).json({
     success: true,
