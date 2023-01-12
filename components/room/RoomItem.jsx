@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const RoomItem = ({room}) => {
   return (
@@ -11,17 +12,24 @@ const RoomItem = ({room}) => {
        className="card-img-top mx-auto" src={room.images[0].url} />
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">
-          <a >Charming Studio &lt; 10 Miles to Wells' Beaches!</a>
+          <Link href={`/room/${room._id}`}>
+          <p >{room.name}</p>
+
+          </Link>
         </h5>
         <div className="ratings mt-auto mb-3">
-          <p className="card-text"><b>$12</b> / night</p>
+          <p className="card-text"><b>${room.pricePerNight}</b> / night</p>
           <div className="rating-outer">
-            <div className="rating-inner" />
+            <div className="rating-inner" 
+              style={{width: `${(room.ratings / 5) * 100}%`}}
+            >
+
+            </div>
           </div>
-          <span id="no_of_reviews">(5 Reviews)</span>
+          <span id="no_of_reviews">({room.numOfReviews} Reviews)</span>
         </div>
         <button className="btn btn-block view-btn">
-          <a href="#">View Details</a>
+          <Link href={`/room/${room._id}`}>View Details</Link>
         </button>
       </div>
     </div>

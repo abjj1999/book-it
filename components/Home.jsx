@@ -1,12 +1,21 @@
- import React from 'react'
+ import React, {useEffect} from 'react'
 
- import {useSelector} from 'react-redux'
+ import {useSelector, useDispatch} from 'react-redux'
+import { toast } from 'react-toastify'
 import RoomItem from './room/RoomItem'
+import { clearErrors } from '../redux/actions/roomActions'
  
  
  const Home = () => {
-    const {rooms} = useSelector(state => state.allRooms)
-    console.log(rooms)
+  const dispatch = useDispatch()
+    const {rooms, error} = useSelector(state => state.allRooms)
+    // console.log(rooms)
+    useEffect(() => {
+      if(error){
+        toast.error(error)
+        dispatch(clearErrors())
+      }
+    }, [])
    return (
    <section id="rooms" className="container mt-5">
   <h2 className="mb-3 ml-2 stays-heading">Stays in New York</h2>
@@ -18,7 +27,7 @@ import RoomItem from './room/RoomItem'
           No Rooms Found.
         </div>
       ): (
-        rooms.map(room => (
+        rooms && rooms.map(room => (
           <RoomItem key={room._id} room={room} />
         ))
       )
