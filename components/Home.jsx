@@ -12,7 +12,7 @@ const Home = () => {
   const { rooms, error, resPerPage, roomsCount, filteredRoomsCount } = useSelector((state) => state.allRooms);
   // console.log(rooms)
   const router = useRouter();
-  let {page = 1} = router.query;
+  let {page = 1, location} = router.query;
   page = Number(page);
   useEffect(() => {
     if (error) {
@@ -20,13 +20,32 @@ const Home = () => {
       dispatch(clearErrors());
     }
   }, []);
+  let queryParams;
+  if(typeof window !== 'undefined'){
+    queryParams = new URLSearchParams(window.location.search);
+  }
   const handlePagination = (pageNumber) => {
-    router.push(`/?page=${pageNumber}`);
+    // router.push(`/?page=${pageNumber}`);
+    if(queryParams.has('page')){
+      queryParams.set('page', pageNumber)
+    }else {
+      queryParams.append('page', pageNumber)
+    }
+
+    router.replace({
+      search: queryParams.toString()
+    })
+  }
+  let count = roomsCount;
+  if (location) {
+    count = filteredRoomsCount;
   }
   return (
 <>
     <section id="rooms" className="container mt-5">
-      <h2 className="mb-3 ml-2 stays-heading">Stays in New York</h2>
+      <h2 className="mb-3 ml-2 stays-heading">
+        {location ? `Stays in ${location}` : "Check out our rooms"}
+      </h2>
       <Link href="/search" className="ml-2 back-to-search">
         {" "}
         <i className="fa fa-arrow-left" /> Back to Search
@@ -44,7 +63,7 @@ const Home = () => {
         )}
       </div>
     </section>
-    {resPerPage <= roomsCount && (
+    {resPerPage <= count && (
       <div className="d-flex justify-content-center mt-3">
 
     <Pagination 

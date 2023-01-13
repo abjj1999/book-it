@@ -5,12 +5,16 @@ import {
 import absoluteUrl from "next-absolute-url";
 
 // Get all rooms
-export const getRooms =(req, currentPage = 1) => async (dispatch) => {
+export const getRooms =(req, currentPage = 1, location= "", guest, category) => async (dispatch) => {
     try {
 
         const {origin} = absoluteUrl(req, "localhost:3000");
+        let link = `${origin}/api/rooms?page=${currentPage}&location=${location}`
 
-        const {data} = await axios.get(`${origin}/api/rooms?page=${currentPage}`);
+        if(guest) link = link.concat(`&guestCapacity=${guest}`)
+        if(category) link = link.concat(`&category=${category}`) 
+
+        const {data} = await axios.get(link);
 
         dispatch({
             type: ALL_ROOMS_SUCCESS,

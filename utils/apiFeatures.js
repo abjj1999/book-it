@@ -12,7 +12,7 @@ class ApiFeatures {
             }
         }: {}
 
-        // console.log(location)
+        console.log(location)
 
         this.query = this.query.find({...location});
 
