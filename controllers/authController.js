@@ -29,12 +29,22 @@ const registerUser = catchAsyncErrors(async (req, res) => {
     res.status(200).json({
         success: true,
         message: "User created successfully",
-        user
+        
         
     });
 
 });
 
-export { registerUser };
+// current user profile => /api/me
+const currentUserProfile = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user._id);
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+export { registerUser, currentUserProfile };
 
 
