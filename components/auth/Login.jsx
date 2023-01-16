@@ -44,7 +44,7 @@ const Login = () => {
         <button id="login_button" type="submit" className="btn btn-block py-3" disabled={loading}>
           {loading ? <BtnLoader /> : 'LOGIN'}
         </button>
-        <a href="#" className="float-right mt-3">New User?</a>
+        <Link href="/register" className="float-right mt-3">New User?</Link>
       </form>
     </div>
   </div>
