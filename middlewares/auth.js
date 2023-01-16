@@ -10,7 +10,7 @@ import {getSession} from 'next-auth/react'
         return next(new ErrorHandler('Login first to access this resource.', 401))
     }
     req.user = session.user;
-    console.log(session);
+    // console.log(session);
     next();
 })
 
