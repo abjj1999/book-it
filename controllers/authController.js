@@ -5,9 +5,9 @@ import cloudinary from "cloudinary";
 
 
 cloudinary.config({
-    cloud_name: "",
-    api_key: "",
-    api_secret: ""
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
 })
 
 // Get all rooms => /api/auth/register
