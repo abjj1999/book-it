@@ -40,7 +40,7 @@ const Login = () => {
           <label htmlFor="password_field">Password</label>
           <input type="password" id="password_field" className="form-control" value={password} onChange={e => setPassword(e.target.value)} />
         </div>
-        <a href="#" className="float-right mb-4">Forgot Password?</a>
+        <Link href="/password/forgot" className="float-right mb-4">Forgot Password?</Link>
         <button id="login_button" type="submit" className="btn btn-block py-3" disabled={loading}>
           {loading ? <BtnLoader /> : 'LOGIN'}
         </button>
