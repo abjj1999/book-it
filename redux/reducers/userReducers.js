@@ -13,6 +13,9 @@ import {
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
+  RESET_PASSWORD_REQUEST,
+ RESET_PASSWORD_FAIL,
+RESET_PASSWORD_SUCCESS
 } from "../contants/userconstants";
 
 export const authReducer = (state = { user: null }, action) => {
@@ -96,6 +99,7 @@ export const userReducer = (state = {}, action) => {
 export const forgotPassword = (state = {}, action) => {
   switch (action.type) {
     case FORGOT_PASSWORD_REQUEST:
+      case RESET_PASSWORD_REQUEST:
       return {
         loading: true,
       };
@@ -105,9 +109,15 @@ export const forgotPassword = (state = {}, action) => {
         loading: false,
         message: action.payload,
       };
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload,
+      };
     
 
     case FORGOT_PASSWORD_FAIL:
+      case RESET_PASSWORD_FAIL:
       return {
         error: action.payload,
         loading: false,
@@ -122,3 +132,5 @@ export const forgotPassword = (state = {}, action) => {
       return state;
   }
 };
+
+
