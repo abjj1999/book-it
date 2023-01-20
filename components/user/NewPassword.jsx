@@ -30,7 +30,7 @@ const NewPassword = () => {
             password, confirmPassword
         }
 
-        dispatch(resetPassword(passwords, router.query.token));
+        dispatch(resetPassword(router.query.token, passwords));
         
     }
   return (

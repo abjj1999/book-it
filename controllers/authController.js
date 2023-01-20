@@ -129,7 +129,7 @@ const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 // reset password => /api/password/reset/:token
 const resetPassword = catchAsyncErrors(async (req, res, next) => {
     // Hash url token
-    console.log("Hello from BE", req);
+    
     const resetPasswordToken = crypto.createHash('sha256').update(req.query.token).digest('hex');
 
     const user = await User.findOne({ resetPasswordToken, resetPasswordExpire: { $gt: Date.now() } });
