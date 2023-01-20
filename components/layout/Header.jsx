@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { user, loading } = useSelector((state) => state.auth);
+  const { user, loading } = useSelector((state) => state.loadedUser);
 
   useEffect(() => {
     dispatch(loadUser());
@@ -16,7 +16,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     signOut();
-    router.push("/login");
+    
 
   }
 
