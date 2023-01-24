@@ -1,0 +1,66 @@
+[
+    {
+      "name": "Charming Studio < 10 Miles to Wells' Beaches!",
+      "pricePerNight": 168,
+      "description": "A friendly atmosphere and natural delights await your visit to the town of Wells! Stay at this well-equipped 1-bath studio and enjoy easy access to several beaches, including Wells Beach and Drakes Island Beach, as well as Rachel Carson National Wildlife Refuge - the best spot for wildlife viewing just 8 miles away. Not to mention, with the downtown area just 10 minutes from the vacation rental,",
+      "address": "4667 Bicetown Street, New York, NY, 10004",
+      "guestCapacity": 1,
+      "numOfBeds": 1,
+      "internet": true,
+      "breakfast": true,
+      "airConditioned": false,
+      "petsAllowed": false,
+      "roomCleaning": true,
+      "images": [
+        {
+          "public_id": "bookit/rooms/1_bzynlv",
+          "url": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+        },
+        {
+          "public_id": "bookit/rooms/2_s1u52n",
+          "url": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWwlMjByb29tc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+        }
+      ],
+      "category": "King"
+    },
+    {
+      "name": "Picturesque 2-Story Farmhouse w/Private Hot Tub",
+      "pricePerNight": 242,
+      "description": "Find plenty of space for a family or a large group at this picturesque Wells home, the perfect spot for a relaxing getaway in charming, quintessential Maine style! Spend your days on the beautiful nearby beaches, and come home to a large backyard and orchard where your kids can play, as well as a patio with a gas grill for barbecues on summer afternoons.",
+      "address": "200 Olympic Dr, Stafford, VS, 22554",
+      "guestCapacity": 2,
+      "numOfBeds": 2,
+      "internet": true,
+      "breakfast": false,
+      "airConditioned": true,
+      "petsAllowed": false,
+      "roomCleaning": true,
+      "images": [
+        {
+          "public_id": "bookit/rooms/3_quuli7.jpg",
+          "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG90ZWwlMjByb29tc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+        }
+      ],
+      "category": "Twins"
+    },
+    {
+      "name": "Downtown Portsmouth Private Getaway! Hot Tub",
+      "pricePerNight": 85,
+      "description": "Absolutely the best location in Portsmouth! Beautifully furnished, this spacious and private home is perfectly suited for taking in all of the must-see sights and historic landmarks that make this vibrant city so unique. Situated near the banks of the Piscataqua River just minutes away from Strawbery Banke Museum, Prescott Park, USS Albacore Museum, Market Square and more!",
+      "address": "3747 Parkway Street, Apple Valley, CA, 92307",
+      "guestCapacity": 3,
+      "numOfBeds": 2,
+      "internet": true,
+      "breakfast": true,
+      "airConditioned": true,
+      "petsAllowed": true,
+      "roomCleaning": false,
+      "images": [
+        {
+          "public_id": "bookit/rooms/4_sju0ql",
+          "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aG90ZWwlMjByb29tc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+        }
+      ],
+      "category": "King"
+    }
+  ]
