@@ -7,6 +7,9 @@ import Head from "next/head";
 import { DatePicker } from "antd";
 const { RangePicker } = DatePicker;
 
+import { checkBooking } from "../../redux/actions/bookingAction";
+import { CHECK_BOOKING_RESET } from "../../redux/contants/bookingConstent";
+
 import { Carousel } from "react-bootstrap";
 import RoomFeatures from "../RoomFeatures";
 
@@ -17,9 +20,12 @@ const RoomDetails = () => {
   const dispatch = useDispatch()
   const router = useRouter();
   const { room, error } = useSelector(state => state.roomDetails)
+  const { available, loading: bookingLoading } = useSelector(state => state.checkBooking)
+  const { user } = useSelector(state => state.loadedUser)
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [checkOutDate, setCheckOutDate] = useState(new Date())
   const [daysOfStay, setDaysOfStay] = useState()
+  const {id} = router.query
   // console.log(rooms)
   useEffect(() => {
     if (error) {
@@ -30,24 +36,31 @@ const RoomDetails = () => {
   const onChange = (values) => {
     
     if (values) {
-      const checkInDate = values[0].$d.toISOString()
-      const checkOutDate = values[1].$d.toISOString()
+      const checkInDate = values[0].$d
+      const checkOutDate = values[1].$d
       console.log(checkInDate)
       console.log(checkOutDate)
+      setCheckInDate(checkInDate)
+      setCheckOutDate(checkOutDate)
       // console.log(new Date(checkInDate).toISOString())
 
       //calculate days of stay
       // const d = Math.floor(((new Date(checkOutDate) - new Date(checkInDate)) / 8640000) + 1)
       const days = Math.floor((new Date(checkOutDate) - new Date(checkInDate)) / (1000 * 60 * 60 * 24))
-      console.log(days) 
       setDaysOfStay(days)
-
+      
+      dispatch(checkBooking(id, checkInDate.toISOString(), checkOutDate.toISOString()))
+      
+      console.log(available) 
+      
       
     }
 
 
 
   }
+
+
 
   const newBookingHandler = async () => {
 
@@ -130,8 +143,30 @@ const RoomDetails = () => {
                 endDate={checkOutDate}
                 format="DD/MM/YYYY"
               />
-              <button className="btn btn-block py-3 booking-btn" 
-              onClick={newBookingHandler}>Pay</button>
+              {available === true && (
+                <div className="alert alert-success mt-3 font-weight-bold">
+                  Room is available. Book Now.
+                </div>
+              )}
+              {available === false && (
+                <div className="alert alert-danger mt-3 font-weight-bold">
+                  Room is not available. Try different dates.
+                </div>
+              )}
+
+              {available && !user && (
+                <div className="alert alert-danger mt-5">
+                  Login to book a room
+                </div>
+              )}
+              {available && user && (
+                <button 
+              
+                className="btn btn-block py-3 booking-btn" 
+                onClick={newBookingHandler}>Pay</button>
+              )}
+
+              
             </div>
           </div>
         </div>
