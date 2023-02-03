@@ -39,7 +39,7 @@ const BookingSchema = new mongoose.Schema({
     },
     paidAt: {
         type: Date,
-        required: true
+        // required: true
     },
     createdAt: {
         type: Date,

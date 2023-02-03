@@ -8,12 +8,12 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 // Create new Booking => /api/bookings
 const newBooking = catchAsyncErrors(async (req, res) => {
 
-
+ 
     const {
         room,
         checkInDate,
-        CheckOutDate,
-        DaysOfStay,
+        checkOutDate,
+        daysOfStay,
         amountPaid,
         paymentInfo,
     } = req.body;
@@ -22,8 +22,8 @@ const newBooking = catchAsyncErrors(async (req, res) => {
         room,
         user: req.user._id,
         checkInDate,
-        CheckOutDate,
-        DaysOfStay,
+        checkOutDate,
+        daysOfStay,
         amountPaid,
         paymentInfo,
 

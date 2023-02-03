@@ -27,20 +27,22 @@ const RoomDetails = () => {
       dispatch(clearErrors())
     }
   }, [])
-  const onChange = (values, dateString) => {
-    const [checkInDate, checkOutDate] = dateString;
-    setCheckInDate(checkInDate)
-    setCheckOutDate(checkOutDate)
-
-    if (checkInDate && checkOutDate) {
-      // console.log(checkInDate)
+  const onChange = (values) => {
+    
+    if (values) {
+      const checkInDate = values[0].$d.toISOString()
+      const checkOutDate = values[1].$d.toISOString()
+      console.log(checkInDate)
+      console.log(checkOutDate)
       // console.log(new Date(checkInDate).toISOString())
 
       //calculate days of stay
-      const days = Math.floor(((new Date(checkOutDate) - new Date
-        (checkInDate)) / 86400000) + 1)
-
+      // const d = Math.floor(((new Date(checkOutDate) - new Date(checkInDate)) / 8640000) + 1)
+      const days = Math.floor((new Date(checkOutDate) - new Date(checkInDate)) / (1000 * 60 * 60 * 24))
+      console.log(days) 
       setDaysOfStay(days)
+
+      
     }
 
 
@@ -57,7 +59,7 @@ const RoomDetails = () => {
       amountPaid: 90,
       paymentInfo: {
         id: 'STRIPE_PAYMENT_ID',
-        id: 'STRIPE_PAYMENT_STATUS'
+        status: 'STRIPE_PAYMENT_STATUS'
       }
     }
 
