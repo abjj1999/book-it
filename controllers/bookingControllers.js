@@ -2,8 +2,10 @@ import Booking from "../models/booking";
 import ErrorHandler from "../utils/errorHandler";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 
-
+const moment = extendMoment(Moment);
 
 // Create new Booking => /api/bookings
 const newBooking = catchAsyncErrors(async (req, res) => {
@@ -76,6 +78,18 @@ const checkRoomBooking = catchAsyncErrors(async (req, res, next) => {
         isAvailable
     })
 
+})
+
+const checkBookedDates = catchAsyncErrors(async (req, res, next) => {
+    const { roomId } = req.query;
+
+    const booking = await Booking.find({ room: roomId})
+
+    let bookedDates = [];
+
+    booking.forEach(booking => {
+        const range = moment.range(moment(booking.checkInDate), moment(booking.checkOutDate));
+    })
 })
 
 export {
