@@ -6,8 +6,8 @@ import { clearErrors } from "../../redux/actions/roomActions";
 import Head from "next/head";
 import { DatePicker } from "antd";
 const { RangePicker } = DatePicker;
-
-import { checkBooking } from "../../redux/actions/bookingAction";
+import moment from "moment/moment";
+import { checkBooking, getBookedDates } from "../../redux/actions/bookingAction";
 import { CHECK_BOOKING_RESET } from "../../redux/contants/bookingConstent";
 
 import { Carousel } from "react-bootstrap";
@@ -22,17 +22,24 @@ const RoomDetails = () => {
   const { room, error } = useSelector(state => state.roomDetails)
   const { available, loading: bookingLoading } = useSelector(state => state.checkBooking)
   const { user } = useSelector(state => state.loadedUser)
+  const { dates } = useSelector(state => state.bookedDates)
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [checkOutDate, setCheckOutDate] = useState(new Date())
   const [daysOfStay, setDaysOfStay] = useState()
   const {id} = router.query
+
+  const excludedDates = []
+  dates && dates.forEach(date => {
+    excludedDates.push(new Date(date))
+  })
   // console.log(rooms)
   useEffect(() => {
+    dispatch(getBookedDates(id))
     if (error) {
       toast.error(error)
       dispatch(clearErrors())
     }
-  }, [])
+  }, [id])
   const onChange = (values) => {
     
     if (values) {
@@ -142,6 +149,11 @@ const RoomDetails = () => {
                 startDate={checkInDate}
                 endDate={checkOutDate}
                 format="DD/MM/YYYY"
+                disabledDate={
+                  (date) => {
+                    return excludedDates.some(excludedDate => date.isSame(excludedDate, 'day'))
+                  }
+                } 
               />
               {available === true && (
                 <div className="alert alert-success mt-3 font-weight-bold">
