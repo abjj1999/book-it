@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import {allRoomsReducer, roomDetailsReducer} from "./roomReducer";
 import {authReducer, forgotPassword, userReducer, loadUserReducer} from "./userReducers";
-import {ChekBookingReducer, bookedDatesReducer} from "./bookingReducers";
+import {ChekBookingReducer, bookedDatesReducer, BookingsReducer} from "./bookingReducers";
 
 const reducers = combineReducers({
     // Add reducers here
@@ -12,7 +12,8 @@ const reducers = combineReducers({
     forgotPassword: forgotPassword,
     loadedUser: loadUserReducer,
     checkBooking: ChekBookingReducer,
-    bookedDates: bookedDatesReducer
+    bookedDates: bookedDatesReducer,
+    bookings: BookingsReducer
 
 });
 
