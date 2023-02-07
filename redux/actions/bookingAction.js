@@ -9,6 +9,8 @@ import {
     BOOKED_DATES_FAIL,
     MY_BOOKINGS_FAIL,
     MY_BOOKINGS_SUCCESS,
+    BOOKING_DETAILS_FAIL,
+    BOOKING_DETAILS_SUCCESS,
     CLEAR_ERRORS
 }  from '../contants/bookingConstent'
 
@@ -74,6 +76,29 @@ export const myBookings = (authCookie, req) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: MY_BOOKINGS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+// get booking details by id => /api/bookings/:id
+export const bookingDetails = (authCookie, req, id) => async (dispatch) => {
+    try {
+        const config = {
+            headers: {
+                cookie: authCookie
+            }
+        }
+        const {origin} = absoluteUrl(req);
+        const {data} = await axios.get(`${origin}/api/bookings/${id}`, config);
+
+        dispatch({
+            type: BOOKING_DETAILS_SUCCESS,
+            payload: data.booking
+        })
+
+    } catch (error) {
+        dispatch({
+            type: BOOKING_DETAILS_FAIL,
             payload: error.response.data.message
         })
     }

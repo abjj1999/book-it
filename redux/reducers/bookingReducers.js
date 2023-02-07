@@ -7,6 +7,8 @@ import {
     BOOKED_DATES_FAIL,
     MY_BOOKINGS_SUCCESS,
     MY_BOOKINGS_FAIL,
+    BOOKING_DETAILS_FAIL,
+    BOOKING_DETAILS_SUCCESS,
     CLEAR_ERRORS
 }  from '../contants/bookingConstent'
 
@@ -90,3 +92,27 @@ export const BookingsReducer = (state = { bookings: [] }, action) => {
                 return state;
         }
 };
+
+//get booking details
+
+export const BookingDetailsReducer = (state = { booking: {} }, action) => {
+        
+            switch (action.type) {
+                case BOOKING_DETAILS_SUCCESS:
+                    return {
+                        loading: false,
+                        booking: action.payload
+                    }
+                case BOOKING_DETAILS_FAIL:
+                    return {
+                        loading: false,
+                        error: action.payload
+                    }
+                case CLEAR_ERRORS:
+                    return {
+                        ...state,
+                    }
+                default:
+                    return state;
+            }
+}
