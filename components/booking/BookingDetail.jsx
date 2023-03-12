@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { clearErrors } from "../../redux/actions/bookingAction";
-import Image from "next/image";
+
 import moment from "moment";
 
 const BookingDetail = () => {
@@ -28,10 +28,10 @@ const BookingDetail = () => {
                 <h2 className="my-5">Booking # {booking._id}</h2>
                 <h4 className="mb-4">User Info</h4>
                 <p>
-                  <b>Name:</b> {booking.user.name}
+                  <b>Name:</b> { booking.user?.name}
                 </p>
                 <p>
-                  <b>Email:</b> {booking.user.email}
+                  <b>Email:</b> {booking.user?.email}
                 </p>
                 <p>
                   <b>Amount:</b> ${booking.amountPaid}
