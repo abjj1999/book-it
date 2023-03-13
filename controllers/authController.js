@@ -15,14 +15,17 @@ cloudinary.config({
 
 // Get all rooms => /api/auth/register
 const registerUser = catchAsyncErrors(async (req, res) => {
-    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    let result;
+    if(req.body.avatar) 
+    {
+         result = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: 'bookIt/avatars',
         width: '150',
         crop: 'scale'
     })
-
+    }
   const { name, email, password } = req.body;
-
+    console.log(name, email, password)
     const user = await User.create({
         name, email, password, avatar: {
             public_id: result.public_id,

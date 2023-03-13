@@ -9,7 +9,7 @@ const { RangePicker } = DatePicker;
 import moment from "moment/moment";
 import { checkBooking, getBookedDates } from "../../redux/actions/bookingAction";
 import { CHECK_BOOKING_RESET } from "../../redux/contants/bookingConstent";
-
+import { getStripe } from "../../utils/getStripe";
 import { Carousel } from "react-bootstrap";
 import RoomFeatures from "../RoomFeatures";
 
@@ -26,6 +26,7 @@ const RoomDetails = () => {
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [checkOutDate, setCheckOutDate] = useState(new Date())
   const [daysOfStay, setDaysOfStay] = useState()
+  const [paymentLoading, setPaymentLoading] = useState(false);
   const {id} = router.query
 
   const excludedDates = []
@@ -38,6 +39,11 @@ const RoomDetails = () => {
     if (error) {
       toast.error(error)
       dispatch(clearErrors())
+
+    }
+
+    return () => {
+      dispatch({ type: CHECK_BOOKING_RESET })
     }
   }, [id])
   const onChange = (values) => {
@@ -67,6 +73,29 @@ const RoomDetails = () => {
 
   }
 
+  const bookRoom = async (id, pricePerNight) => {
+    setPaymentLoading(true);
+
+    const amount = pricePerNight * daysOfStay;
+
+    try {
+      
+      const link = `/api/checkout_session/${id}?checkInDate=${checkInDate.toISOString()}&checkOutDate=${checkOutDate.toISOString()}&daysOfStay=${daysOfStay}`
+
+
+      const { data } = await axios.get(link, {params: {amount}})
+
+      const stripe = await getStripe();
+
+      // Redirect to Stripe Checkout
+      stripe.redirectToCheckout({ sessionId: data.id });
+      setPaymentLoading(false);
+    } catch (error) {
+      setPaymentLoading(false);
+      console.log(error);
+      toast.error(error.message)
+    }
+  }
 
 
   const newBookingHandler = async () => {
@@ -175,7 +204,9 @@ const RoomDetails = () => {
                 <button 
               
                 className="btn btn-block py-3 booking-btn" 
-                onClick={newBookingHandler}>Pay</button>
+                onClick={() => bookRoom(room._id, room.pricePerNight)}
+                disabled= {bookingLoading || paymentLoading ? true : false}
+                >Pay - ${daysOfStay * room.pricePerNight }</button>
               )}
 
               

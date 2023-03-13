@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { clearErrors } from "../../redux/actions/bookingAction";
-
-
+// import {writeFileSync} from "fs";
+// import easyinvoice from 'easyinvoice'
 const MyBookings = () => {
   const dispatch = useDispatch();
   const { bookings, error } = useSelector((state) => state.bookings);
@@ -49,7 +49,8 @@ const MyBookings = () => {
     },
   ];
   const createInvoiced = async (booking) => {
-    
+    var data = {};
+   
   }
   const data = [];
   // console.log(bookings)

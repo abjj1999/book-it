@@ -29,11 +29,14 @@ export const register = (userData) => async (dispatch) => {
       },
     };
 
+    // console.log(userData)
+
     const { data } = await axios.post("/api/auth/register", userData, config);
     dispatch({
       type: REGISTER_SUCCESS,
     });
   } catch (error) {
+    console.log(error)
     dispatch({
       type: REGISTER_FAIL,
       payload: error.response.data.message,

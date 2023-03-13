@@ -32,6 +32,7 @@ const Register = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        console.log(name, email, password)
         const userData = {
             name, email, password, avatar
         }

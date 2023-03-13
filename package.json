@@ -12,6 +12,7 @@
   "dependencies": {
     "@next/font": "13.1.1",
     "@reduxjs/toolkit": "^1.9.1",
+    "@stripe/stripe-js": "^1.48.0",
     "antd": "^5.1.6",
     "axios": "^1.2.2",
     "bcryptjs": "^2.4.3",
@@ -19,6 +20,7 @@
     "dotenv": "^16.0.3",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
+    "fs": "^0.0.1-security",
     "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "mongoose": "^7.0.1",
@@ -32,12 +34,13 @@
     "react-bootstrap": "^2.7.0",
     "react-datepicker": "^4.10.0",
     "react-dom": "18.2.0",
-    "react-js-pagination": "^3.0.3",
+    "react-js-pagination": "^3.0.2",
     "react-redux": "^8.0.5",
     "react-toastify": "^9.1.1",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
+    "stripe": "^11.14.0",
     "validator": "^13.7.0",
     "when": "^3.7.8"
   }
